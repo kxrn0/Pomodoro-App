@@ -1,0 +1,96 @@
+@font-face {
+  font-family: kumbh;
+  src: url("./assets/KumbhSans-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: roboto;
+  src: url("./assets/RobotoSlab-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: space-regular;
+  src: url("./assets/SpaceMono-Regular.ttf");
+}
+
+@font-face {
+  font-family: space-bold;
+  src: url("./assets/SpaceMono-Bold.ttf");
+}
+
+.pomodoro.kumbh {
+  --font-family-regular: kumbh;
+  --font-family-bold: kumbh;
+  --regular-weight: 700;
+  --bold-weight: 700;
+}
+
+.pomodoro.roboto {
+  --font-family-regular: roboto;
+  --font-family-bold: roboto;
+  --regular-weight: 700;
+  --bold-weight: 700;
+}
+
+.pomodoro.space {
+  --font-family-regular: space-regular;
+  --font-family-bold: space-bold;
+  --regular-weight: 400;
+  --bold-weight: 700;
+}
+
+.h1 {
+  font-family: var(--font-family-bold);
+  font-weight: var(--regular-weight);
+  font-size: 100px;
+  line-height: 120px;
+  letter-spacing: -5px;
+}
+
+.h2 {
+  font-family: kumbh;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+}
+
+.h3 {
+  font-family: var(--font-family-bold);
+  font-weight: var(--bold-weight);
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+}
+
+.h4 {
+  font-family: kumbh;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.p1 {
+  font-family: var(--font-family-bold);
+  font-weight: var(--bold-weight);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.p2 {
+  color: #1e213f;
+  opacity: 0.4;
+  mix-blend-mode: normal;
+  font-family: kumbh;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+@media screen and (max-width: 500px) {
+  h4 {
+    font-size: 11px;
+  }
+}
