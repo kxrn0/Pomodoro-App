@@ -173,6 +173,14 @@
   z-index: 1;
 }
 
+.pomodoro.finished .timer .h1 {
+  text-shadow: 5px 5px 5px rgb(2, 3, 35);
+}
+
+.pomodoro.finished .timer .h3 {
+  text-shadow: 2px 2px 3px rgb(2, 6, 33);
+}
+
 @media screen and (max-width: 500px) {
   canvas {
     width: 300px;
