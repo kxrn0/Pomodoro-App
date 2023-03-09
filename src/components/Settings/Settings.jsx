@@ -124,7 +124,7 @@ export default function Settings({ initial, set, close }) {
 
     document.addEventListener("keypress", listen);
 
-    () => document.removeEventListener("keypress", listen);
+    return () => document.removeEventListener("keypress", listen);
   }, []);
 
   return (

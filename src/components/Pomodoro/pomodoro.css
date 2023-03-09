@@ -23,6 +23,7 @@
 .pomodoro.purple {
   --pill-bg: var(--purple);
 }
+
 .pomodoro .title {
   color: var(--white);
   font-family: kumbh;
@@ -144,8 +145,12 @@
   text-align: center;
 }
 
-.pomodoro .timer .timer-content h1 .dots {
+.pomodoro:not(.space) .timer .timer-content h1 .dots {
   width: 30px;
+}
+
+.pomodoro.space .timer .timer-content h1 .dots {
+  width: 50px;
 }
 
 .pomodoro .timer .timer-content h1 .digit {

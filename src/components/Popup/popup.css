@@ -1,5 +1,5 @@
 .popup {
-  --duration: .33s;
+  --duration: 0.33s;
   position: fixed;
   inset: 0;
   transition: opacity var(--duration);
