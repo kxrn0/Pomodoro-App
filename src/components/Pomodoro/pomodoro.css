@@ -178,4 +178,8 @@
     width: 300px;
     height: 300px;
   }
+
+  .pomodoro .timer .timer-content h1 .digit {
+    width: 45px;
+  }
 }

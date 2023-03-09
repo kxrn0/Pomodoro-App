@@ -90,7 +90,11 @@
 }
 
 @media screen and (max-width: 500px) {
-  h4 {
+  .h1 {
+    font-size: 75px;
+  }
+
+  .h4 {
     font-size: 11px;
   }
 }
