@@ -80,9 +80,9 @@ export default function Pomodoro() {
 
     draw_circles(canvasRef.current, 50, 5);
 
-    console.log("from end:")
-    console.log(state)
-    console.log("-------------------")
+    console.log("from end:");
+    console.log(state);
+    console.log("-------------------");
 
     if (state.value === "finished")
       animeEdRef.current = requestAnimationFrame(end_anime);
@@ -209,7 +209,7 @@ export default function Pomodoro() {
       } ${state.value === "finished" ? "finished" : ""}`}
     >
       <button onClick={() => cancelAnimationFrame(animeEdRef.current)}>
-        cancel
+        cancel this thing
       </button>
       <button onClick={() => console.log(state)}>state</button>
       <Popup shown={settingsOpen} close={() => setSettingsOpen(false)}>
