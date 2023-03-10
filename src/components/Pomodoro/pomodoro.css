@@ -83,16 +83,12 @@
 }
 
 .pomodoro .modes li span {
-  position: relative;
-  z-index: 1;
-  user-select: none;
-  transition: color 0.66s;
-}
-
-.pomodoro .modes li input + span {
   color: var(--white);
   opacity: 0.4;
   mix-blend-mode: normal;
+  position: relative;
+  z-index: 1;
+  user-select: none;
 }
 
 .pomodoro .modes li input:checked + span {
@@ -167,6 +163,7 @@
   background-image: url("../../assets/icon-settings.svg");
   background-size: cover;
   background-color: transparent;
+  opacity: 0.5;
   border: none;
   width: 28px;
   height: 28px;
@@ -179,6 +176,20 @@
 
 .pomodoro.finished .timer .h3 {
   text-shadow: 2px 2px 3px rgb(2, 6, 33);
+}
+
+@media (hover: hover) {
+  .pomodoro .modes li span:hover {
+    opacity: 1;
+  }
+
+  .pomodoro .open-settings:hover {
+    opacity: 1;
+  }
+
+  .pomodoro .timer .timer-content button:hover {
+    color: var(--pill-bg);
+  }
 }
 
 @media screen and (max-width: 500px) {

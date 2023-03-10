@@ -17,23 +17,23 @@ export default function Pomodoro() {
     mode: "pomodoro-mode",
   });
   const [timeLeft, setTimeLeft] = useState(null);
-  const [state, setState] = useState({
+  const [state, setState] = useState(() => ({
     value: "paused",
     label: "start",
-  });
+  }));
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const intervalIdRef = useRef(null);
   const audioRef = useRef(null);
+  const canvasRef = useRef(null);
+  const futureRef = useRef(null);
+  const animeRef = useRef(-1);
+  const animeEdRef = useRef(-1);
   const modes = [
     { value: "pomodoro-mode", label: "pomodoro" },
     { value: "short-break-mode", label: "short break" },
     { value: "long-break-mode", label: "long break" },
   ];
   const colors = { red: "#f87070", blue: "#70f3f8", purple: "#d881f8" };
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  const canvasRef = useRef(null);
-  const futureRef = useRef(null);
-  const animeRef = useRef(null);
-  const animeEdRef = useRef(null);
 
   function tick() {
     setTimeLeft((prevTime) => {
@@ -43,7 +43,7 @@ export default function Pomodoro() {
       audioRef.current.play();
       clearInterval(intervalIdRef.current);
       cancelAnimationFrame(animeRef.current);
-      // end_anime(canvasRef.current, 50, 5);
+      animeEdRef.current = -1;
       end_anime();
       return 0;
     });
@@ -55,10 +55,12 @@ export default function Pomodoro() {
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
     cancelAnimationFrame(animeRef.current);
+    cancelAnimationFrame(animeEdRef.current);
+    animeEdRef.current = null;
     context.strokeStyle = colors[settings.color];
     draw_arc(canvasRef.current, Math.PI * 2);
     setTimeLeft(settings.times[mode]);
-    // setState({ value: "paused", label: "start" });
+    setState({ value: "paused", label: "start" });
   }
 
   function begin_anime() {
@@ -76,15 +78,9 @@ export default function Pomodoro() {
   }
 
   function end_anime() {
-    console.log(`anime! ${Math.random()}`);
-
     draw_circles(canvasRef.current, 50, 5);
 
-    console.log("from end:");
-    console.log(state);
-    console.log("-------------------");
-
-    if (state.value === "finished")
+    if (animeEdRef.current !== null)
       animeEdRef.current = requestAnimationFrame(end_anime);
   }
 
@@ -118,6 +114,7 @@ export default function Pomodoro() {
     if (angle <= 0) return;
 
     context.lineWidth = 13;
+    context.lineCap = "round";
     context.beginPath();
     context.arc(
       canvas.width / 2,
@@ -132,6 +129,7 @@ export default function Pomodoro() {
   function handle_click() {
     switch (state.value) {
       case "paused":
+        cancelAnimationFrame(animeEdRef.current);
         intervalIdRef.current = setInterval(tick, 1000);
         setState({ value: "running", label: "pause" });
         futureRef.current = Date.now() + timeLeft * 1000;
@@ -143,7 +141,6 @@ export default function Pomodoro() {
         setState({ value: "paused", label: "start" });
         break;
       case "finished":
-        cancelAnimationFrame(animeEdRef.current);
         clean_up(settings.mode);
     }
   }
@@ -159,6 +156,8 @@ export default function Pomodoro() {
   }
 
   function open_settings() {
+    if (state.value === "finished") clean_up(settings.mode);
+
     clearInterval(intervalIdRef.current);
     cancelAnimationFrame(animeRef.current);
     setState({ value: "paused", label: "start" });
@@ -195,8 +194,6 @@ export default function Pomodoro() {
           (Math.PI * 2 * (settings.times[settings.mode] - timeLeft)) /
             settings.times[settings.mode];
 
-    context.lineWidth = 13;
-    context.lineCap = "round";
     context.strokeStyle = colors[settings.color];
 
     draw_arc(canvas, length);
@@ -208,10 +205,6 @@ export default function Pomodoro() {
         settings.color
       } ${state.value === "finished" ? "finished" : ""}`}
     >
-      <button onClick={() => cancelAnimationFrame(animeEdRef.current)}>
-        cancel this thing
-      </button>
-      <button onClick={() => console.log(state)}>state</button>
       <Popup shown={settingsOpen} close={() => setSettingsOpen(false)}>
         <Settings
           initial={settings}
