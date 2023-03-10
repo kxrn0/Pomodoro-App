@@ -8,7 +8,7 @@ import "./pomodoro.css";
 export default function Pomodoro() {
   const [settings, setSettings] = useState({
     times: {
-      "pomodoro-mode": 5, //1500,
+      "pomodoro-mode": 1500,
       "short-break-mode": 300,
       "long-break-mode": 900,
     },
