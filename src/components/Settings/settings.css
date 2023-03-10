@@ -7,6 +7,7 @@
   flex-direction: column;
   border-radius: 25px;
   position: relative;
+  width: fit-content;
 }
 
 .settings h2 {
@@ -18,6 +19,7 @@
   background-image: url("../../assets/icon-close.svg");
   background-size: cover;
   background-color: transparent;
+  opacity: 0.5;
   border: none;
   width: 14px;
   height: 14px;
@@ -98,6 +100,7 @@
 .settings .setting-item.time-setting .inputs .input .plus {
   background-image: url("../../assets/icon-arrow-up.svg");
   background-position: center 16px;
+  opacity: 0.25;
   top: 0;
   right: 0;
 }
@@ -105,6 +108,7 @@
 .settings .setting-item.time-setting .inputs .input .minus {
   background-image: url("../../assets/icon-arrow-down.svg");
   background-position: center 4px;
+  opacity: 0.25;
   bottom: 0;
   right: 0;
 }
@@ -220,15 +224,15 @@
 
 @media (hover: hover) {
   .settings .close-settings:hover {
-    background-image: url("../../assets/icon-close-hover.svg");
+    opacity: 1;
   }
 
   .settings .setting-item.time-setting .inputs .input .plus:hover {
-    background-image: url("../../assets/icon-arrow-up-hover.svg");
+    opacity: 1;
   }
 
   .settings .setting-item.time-setting .inputs .input .minus:hover {
-    background-image: url("../../assets/icon-arrow-down-hover.svg");
+    opacity: 1;
   }
 
   .settings input[type="radio"] {
