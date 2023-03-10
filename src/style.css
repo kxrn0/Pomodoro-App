@@ -7,7 +7,7 @@
 }
 
 body {
-  viewport-fit: cover;
+  height: 100vh;
 }
 
 .App {
