@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   background: #1e213f;
 }
 
