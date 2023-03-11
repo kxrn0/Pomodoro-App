@@ -7,11 +7,10 @@
 }
 
 body {
-  height: 100vh;
+  background: #1e213f;
 }
 
 .App {
-  background: #1e213f;
   min-height: 100vh;
   display: grid;
   place-items: center;
