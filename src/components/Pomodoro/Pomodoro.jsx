@@ -6,15 +6,24 @@ import alarm from "../../assets/alarm_sound.mp3";
 import "./pomodoro.css";
 
 export default function Pomodoro() {
-  const [settings, setSettings] = useState({
-    times: {
-      "pomodoro-mode": 1500,
-      "short-break-mode": 300,
-      "long-break-mode": 900,
-    },
-    font: "kumbh",
-    color: "red",
-    mode: "pomodoro-mode",
+  const [settings, setSettings] = useState(() => {
+    let settings;
+
+    settings = localStorage.getItem("_clock_settings_");
+    if (!settings) {
+      settings = {
+        times: {
+          "pomodoro-mode": 1500,
+          "short-break-mode": 300,
+          "long-break-mode": 900,
+        },
+        font: "kumbh",
+        color: "red",
+        mode: "pomodoro-mode",
+      };
+      localStorage.setItem("_clock_settings_", JSON.stringify(settings));
+    } else settings = JSON.parse(settings);
+    return settings;
   });
   const [timeLeft, setTimeLeft] = useState(null);
   const [state, setState] = useState(() => ({
@@ -169,6 +178,8 @@ export default function Pomodoro() {
       setTimeLeft(newSettings.times[settings.mode]);
       draw_arc(canvasRef.current, Math.PI * 2);
     }
+
+    localStorage.setItem("_clock_settings_", JSON.stringify(newSettings));
 
     setSettings(newSettings);
   }
