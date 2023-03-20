@@ -4,7 +4,8 @@ import { VitePWA } from "vite-plugin-pwa";
 
 const options = {
   base: "/Pomodoro-App/",
-  includedAssets: ["favicon.ico"],
+  includedAssets: ["**/*"],
+  workbox: { globPatterns: ["**/*"] },
   manifest: {
     name: "Pomodoro",
     short_name: "Pomodoro",
@@ -16,6 +17,16 @@ const options = {
       {
         src: "icon-192x192.png",
         sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "icon-256x256.png",
+        sizes: "256x256",
+        type: "image/png",
+      },
+      {
+        src: "icon-384x384.png",
+        sizes: "384x384",
         type: "image/png",
       },
       {
