@@ -11,7 +11,7 @@ const options = {
     short_name: "Pomodoro",
     theme_color: "#ffffff",
     background_color: "#ffffff",
-    display: "fullscreen",
+    display: "standalone",
     start_url: "/Pomodoro-App/",
     icons: [
       {
